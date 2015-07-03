@@ -26,7 +26,7 @@ public class LoginSteps extends TestBaseNative {
         driver.get("file:///D:/AutomationTraining/installers/backup/app-demo/login.html");
     }
 
-    @And("^he/she inserts valid credentials$")
+    @Given("^he/she inserts valid credentials$")
     public void he_she_inserts_valid_credentials() throws Throwable {
         WebElement email = driver.findElement(By.id("email"));
         email.sendKeys("eu@fast.com");
@@ -52,25 +52,22 @@ public class LoginSteps extends TestBaseNative {
 
     }
 
-    @And("^he/she inserts invalid credentials$")
+    @Given("^he/she inserts invalid credentials$")
     public void he_she_inserts_invalid_credentials() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
+        WebElement email = driver.findElement(By.id("email"));
+        email.sendKeys("eu@fast.com");
+
+        WebElement password = driver.findElement(By.id("password"));
+        password.sendKeys("dd");
+
+        Utils.sleep(2000);
     }
 
     @Then("^he/she expects an invalid credentials message$")
     public void he_she_expects_an_invalid_credentials_message() throws Throwable {
-        // Express the Regexp above with the code you wish you had
-        throw new PendingException();
-    }
+        WebElement error = driver.findElement(By.className("error-msg"));
+        assertThat(error.getText(), is("Invalid user or password!"));
 
-    @Given("^I open this url \"([^\"]*)\"$")
-    public void I_open_this_url(String url) throws Throwable {
-        driver.get(url);
-    }
-
-    @Then("^I send (\\d+) into search field$")
-    public void I_send_into_search_field(int arg1) throws Throwable {
-        System.out.println("numarul este 5" + arg1);
+        Utils.sleep(2000);
     }
 }
