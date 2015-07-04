@@ -37,13 +37,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Given("^he/she inserts valid credentials$")
     public void he_she_inserts_valid_credentials() {
-        WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("eu@fast.com");
-
-        WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("eu.pass");
-
-
+        loginPage.enterCredentials();
     }
 
     @When("^he/she clicks the login button$")
@@ -71,12 +65,7 @@ public class LoginSteps extends TestBaseNative {
 
     @Then("^he/she expects an invalid credentials message$")
     public void he_she_expects_an_invalid_credentials_message() {
-        errorMessageShouldBePresent("Invalid user!");
-    }
-
-    private void errorMessageShouldBePresent(String expectedMessage) {
-        WebElement error = driver.findElement(By.className("error-msg"));
-        assertThat(error.getText(), is(expectedMessage));
+        loginPage.errorMessageShouldBePresent("Invalid user!");
     }
 
     @When("^the user enters \"([^\"]*)\"/\"([^\"]*)\" credentials$")
@@ -90,11 +79,11 @@ public class LoginSteps extends TestBaseNative {
 
     @Then("^he/she expects error message$")
     public void he_she_expects_error_message() {
-        errorMessageShouldBePresent("Invalid user or password!");
+        loginPage.errorMessageShouldBePresent("Invalid user or password!");
     }
 
     @Then("^he/she expects \"([^\"]*)\" error message$")
     public void he_she_expects_error_message(String msg) throws Throwable {
-        errorMessageShouldBePresent(msg);
+        loginPage.errorMessageShouldBePresent(msg);
     }
 }
