@@ -16,6 +16,9 @@ import static org.hamcrest.core.Is.is;
 public class LoginSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
+    public static final String VALID_EMAIL = "eu@fast.com";
+    public static final String VALID_PASSWORD = "eu.pass";
+
     private LoginView loginPage = new LoginView();
 
 
@@ -46,10 +49,10 @@ public class LoginSteps extends TestBase {
     @Given("^he/she inserts invalid credentials$")
     public void he_she_inserts_invalid_credentials() {
         WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("eu@fast.com");
+        email.sendKeys(VALID_EMAIL);
 
         WebElement password = driver.findElement(By.id("password"));
-        password.sendKeys("dd");
+        password.sendKeys(VALID_PASSWORD);
     }
 
     @Then("^he/she expects an invalid credentials message$")
