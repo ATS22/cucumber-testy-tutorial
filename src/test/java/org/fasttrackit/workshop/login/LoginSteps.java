@@ -5,6 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fasttrackit.util.TestBase;
 import org.fasttrackit.util.TestBaseNative;
+import org.fasttrackit.workshop.menu.MainMenuView;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
@@ -16,8 +17,8 @@ import static org.hamcrest.core.Is.is;
 public class LoginSteps extends TestBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginSteps.class);
 
-    public static final String VALID_EMAIL = "eu@fast.com";
-    public static final String VALID_PASSWORD = "eu.pass";
+    public static String VALID_EMAIL = "eu@fast.com";
+    public static String VALID_PASSWORD = "eu.pass";
 
     private LoginView loginPage = new LoginView();
 
@@ -40,10 +41,7 @@ public class LoginSteps extends TestBase {
 
     @Then("^he/she checks if the user was logged in$")
     public void he_she_checks_if_the_user_was_logged_in() {
-        WebElement logout = driver.findElement(By.linkText("Logout"));
-        boolean successLoggedIn = logout.isDisplayed();
-        assertThat("Could not find logout button", successLoggedIn, is(true));
-
+        MainMenuView.logoutLink.assertExists();
     }
 
     @Given("^he/she inserts invalid credentials$")

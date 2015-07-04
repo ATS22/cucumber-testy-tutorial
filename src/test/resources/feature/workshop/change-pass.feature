@@ -12,4 +12,7 @@ Feature: As logged in user I change my password
     And I click on the Save button
     Then I should see "Your password has been successfully changed." message
     And I close Preferences window
-    And I can re-login with new credentials
+    And I logout
+    And the user accesses the login page
+    And he/she inserts valid credentials
+    And he/she clicks the login button
