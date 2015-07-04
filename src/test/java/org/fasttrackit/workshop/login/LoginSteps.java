@@ -22,30 +22,29 @@ public class LoginSteps extends TestBaseNative {
     LoginPage loginPage;
 
     @Given("^the user accesses the login page$")
-    public void the_user_accesses_the_login_page() throws Throwable {
+    public void the_user_accesses_the_login_page() {
         driver.get("file:///D:/AutomationTraining/installers/backup/app-demo/login.html");
     }
 
     @Given("^he/she inserts valid credentials$")
-    public void he_she_inserts_valid_credentials() throws Throwable {
+    public void he_she_inserts_valid_credentials() {
         WebElement email = driver.findElement(By.id("email"));
         email.sendKeys("eu@fast.com");
 
         WebElement password = driver.findElement(By.id("password"));
         password.sendKeys("eu.pass");
 
-        Utils.sleep(2000);
+
     }
 
     @When("^he/she clicks the login button$")
-    public void he_she_clicks_the_login_button() throws Throwable {
+    public void he_she_clicks_the_login_button() {
         WebElement login = driver.findElement(By.id("loginButton"));
         login.click();
-        Utils.sleep(2000);
     }
 
     @Then("^he/she checks if the user was logged in$")
-    public void he_she_checks_if_the_user_was_logged_in() throws Throwable {
+    public void he_she_checks_if_the_user_was_logged_in() {
         WebElement logout = driver.findElement(By.linkText("Logout"));
         boolean successLoggedIn = logout.isDisplayed();
         assertThat("Could not find logout button", successLoggedIn, is(true));
@@ -53,21 +52,17 @@ public class LoginSteps extends TestBaseNative {
     }
 
     @Given("^he/she inserts invalid credentials$")
-    public void he_she_inserts_invalid_credentials() throws Throwable {
+    public void he_she_inserts_invalid_credentials() {
         WebElement email = driver.findElement(By.id("email"));
         email.sendKeys("eu@fast.com");
 
         WebElement password = driver.findElement(By.id("password"));
         password.sendKeys("dd");
-
-        Utils.sleep(2000);
     }
 
     @Then("^he/she expects an invalid credentials message$")
-    public void he_she_expects_an_invalid_credentials_message() throws Throwable {
+    public void he_she_expects_an_invalid_credentials_message() {
         errorMessageShouldBePresent("Invalid user!");
-
-        Utils.sleep(2000);
     }
 
     private void errorMessageShouldBePresent(String expectedMessage) {
@@ -76,7 +71,7 @@ public class LoginSteps extends TestBaseNative {
     }
 
     @When("^the user enters \"([^\"]*)\"/\"([^\"]*)\" credentials$")
-    public void the_user_enters_credentials(String emailValue, String passValue) throws Throwable {
+    public void the_user_enters_credentials(String emailValue, String passValue) {
         WebElement email = driver.findElement(By.id("email"));
         email.sendKeys(emailValue);
 
@@ -85,7 +80,7 @@ public class LoginSteps extends TestBaseNative {
     }
 
     @Then("^he/she expects error message$")
-    public void he_she_expects_error_message() throws Throwable {
+    public void he_she_expects_error_message() {
         errorMessageShouldBePresent("Invalid user or password!");
     }
 
